@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Smart Garden Dashboard</title>
+
+  <link rel="stylesheet" href="../static/css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🌱 Smart Garden Dashboard</h1>
+
+    <div class="connRow">
+      <span id="connDot" class="dot bad"></span>
+      <span id="connText">Disconnected</span>
+      <span class="hint">Group dashboard (Live)</span>
+    </div>
+
+    <div class="grid">
+      <!-- TOP LEFT: Leader - Motion -->
+      <!-- TOP LEFT: Leader - Motion + Force + Servo -->
+
+      <div class="card">
+        <h2>🏃 Motion + Force + Servo</h2>
+
+        <div class="kv"><span>Motion</span><b><span id="motionText">--</span></b></div>
+        <div class="kv"><span>Force / Pressure</span><b><span id="forceVal">--</span></b></div>
+        <div class="kv"><span>Servo</span><b><span id="servoText">--</span></b></div>
+        <!-- Bottom visuals -->
+         <div class="miniRow">
+          <!-- Water tank (color changes clean/dirty) -->
+           <div class="tankWrap" id="tankWrap">
+            <img id="tankImg" src="../static/image/watertank.png" alt="Water Tank">
+      
+            <div id="tankTint" class="tankTint clean"></div>
+    
+          </div>
+
+    <!-- Filter animation (png idle, gif active) -->
+    <div class="filterWrap">
+      <img id="filterAnim" src="../static/image/filter.png" alt="Filter">
+    </div>
+  </div>
+
+  <div class="small">Last update: <span id="t1">--</span></div>
+</div>
+
+
+      <!-- TOP RIGHT: UV + Light bulb -->
+      <div class="card">
+        <h2>☀️ UV Sensor</h2>
+        <div class="kv"><span>UV Index</span><b><span id="uv">--</span></b></div>
+
+        <div class="bulbWrap">
+          <img id="bulbImg" class="bulb off" src="../static/image/LightBulb.png" alt="Light Bulb" />
+          <div id="bulbGlow" class="bulbGlow off"></div>
+        </div>
+
+        <div class="small">Status: <span id="uvStatus">--</span></div>
+        <div class="small">Last update: <span id="t2">--</span></div>
+      </div>
+
+      <!-- BOTTOM LEFT: YOU - IR Distance + BarGraph + Buzz -->
+      <div class="card">
+        <h2>💧 Water Tank (IR + BarGraph + Buzz)</h2>
+
+        <div class="kv"><span>Tank Level</span><b><span id="water">--</span>%</b></div>
+        <div class="barOuter"><div id="waterBar" class="barInner"></div></div>
+
+        <div class="kv"><span>IR Distance</span><b><span id="distance">--</span> cm</b></div>
+        <div class="kv"><span>Alarm</span><b><span id="alarmText">--</span></b></div>
+        <div class="kv"><span>Muted</span><b><span id="muteText">--</span></b></div>
+
+        <div class="rowBtns">
+          <button id="btnMute" class="warn">Mute Alarm</button>
+        </div>
+
+        <div class="small">Last update: <span id="t3">--</span></div>
+      </div>
+
+      <!-- BOTTOM RIGHT: Rayyan - OLED + Buzz + ENV (temp/hum moved here) -->
+      <div class="card">
+        <h2>🖥️ OLED + Buzz + ENV</h2>
+
+        <div class="kv"><span>Temperature</span><b><span id="envTemp">--</span> °C</b></div>
+        <div class="kv"><span>Humidity</span><b><span id="envHum">--</span> %</b></div>
+        
+        <div class="kv"><span>Watering Plant</span><b><span id="wateringText">--</span></b></div>
+
+        <!-- Watering Animation (PNG idle, GIF when watering) -->
+           <div class="waterAnimWrap">
+            <img id="waterAnim" src="../static/image/plant.png" alt="Watering Animation">
+  </div>
+        <div class="small">Last update: <span id="t4">--</span></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Smart Garden System (Team:Aeris)
+    </div>
+  </div>
+
+  <script src="../static/js/dashboard.js"></script>
+</body>
+</html>
